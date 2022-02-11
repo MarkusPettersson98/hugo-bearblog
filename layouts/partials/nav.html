@@ -1,7 +1,30 @@
-<a href="{{ "/" | relURL }}">Home</a>
-{{ range .Site.Menus.main }}
-<a href="{{ .URL }}">{{ .Name }}</a>
-{{ end }}
-{{ with .Site.GetPage "/blog" }}
-<a href="{{ "/blog" | relURL }}">Blog</a>
-{{ end }}
+<div class="flex-container-space-between">
+  <div>
+    <ul class="list-inline" style="padding-left: 0;">
+      <li>
+        <a href="{{ "/" | relURL }}">Home</a>
+      </li>
+      {{ range .Site.Menus.main }}
+      <li>
+        <a href="{{ .URL }}">{{ .Name }}</a>
+      </li>
+      {{ end }}
+      {{ with .Site.GetPage "/blog" }}
+      <li>
+        <a href="{{ "/blog" | relURL }}">Blog</a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  <div>
+    <ul class="list-inline header-links">
+      {{ range .Site.Data.social.social_icons }}
+      {{- if isset $.Site.Author .id }}
+      <li><a
+            class="icon"
+            href="{{ printf .url (index $.Site.Author .id) }}" title="{{ .title }}"> {{ partial "fa.html" (.id) }}</a></li>
+      {{- end -}}
+      {{ end }}
+    </ul>
+  </div>
+</div>
