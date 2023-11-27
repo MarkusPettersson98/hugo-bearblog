@@ -19,10 +19,10 @@
   <div>
     <ul class="list-inline header-links">
       {{ range .Site.Data.social.social_icons }}
-      {{- if isset $.Site.Author .id }}
+      {{- if isset $.Site.Params.Author .id }}
       <li><a
             class="icon"
-            href="{{ printf .url (index $.Site.Author .id) }}" title="{{ .title }}"> {{ partial "fa.html" (.id) }}</a></li>
+            href="{{ printf .url (index $.Site.Params.Author .id) }}" title="{{ .title }}"> {{ partial "fa.html" (.id) }}</a></li>
       {{- end -}}
       {{ end }}
     </ul>
